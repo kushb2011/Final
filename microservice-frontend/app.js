@@ -171,7 +171,7 @@ function setComment($id) {
         url: Url+'SetComment',
         type: 'post', //type of request (get)
         dataType: 'json', //dataType, which is json for this lab.
-        data: JSON.stringify({'product_id':$id, 'message-text':messagetext, 'score':score}), //data to be sent
+        data: JSON.stringify({'product_id':$id, 'comment':messagetext, 'score':score}), //data to be sent
         contentType: 'text/plain', //contentType, which is text/plain since json is sent as plain text.
 
         success: function(){

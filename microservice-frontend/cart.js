@@ -51,13 +51,66 @@ function getCart($email) {
 
 function deleteItem($id) {
 
-    //TODO complete implementation using the product id
-    alert("cart.js/deleteItem() is not implemented")
+    let email =$.trim($('#email').val());
+
+    $.ajax({
+        url: Url+'Cart/' + $id, //API url
+        type: 'delete', //type of request (get)
+        dataType: 'json', //dataType, which is json for this lab.
+        data: JSON.stringify({'product_id':$id, 'email':email}), //data to be sent
+        contentType: 'text/plain', //contentType, which is text/plain since json is sent as plain text.
+       success: function(){
+           alert('Product was deleted from cart');
+       },
+       error: function(){
+           alert('Product was not deleted from cart');
+       }
+      
+    });
 }
 
 function checkOut() {
 
-    //TODO complete implementation
-    alert("cart.js/checkOut() is not implemented")
+    let email =$.trim($('#email').val());
+
+    $.ajax({
+        url: Url+'Cart', //API url
+        type: 'put', //type of request (get)
+        dataType: 'json', //dataType, which is json for this lab.
+        data: JSON.stringify({ 'email':email}), //data to be sent
+        contentType: 'text/plain', //contentType, which is text/plain since json is sent as plain text.
+       success: function(){
+           alert('Checkout complete');
+       },
+       error: function(){
+           alert('Error');
+       }
+      
+    });
 
 }
+
+//let email = sessionStorage.getItem('email'); //gets the users email from sessionStorage
+
+function deleteAll($email) {
+
+
+    $.ajax({
+        url: Url+'Cart', //API url
+        type: 'delete', //type of request (get)
+        dataType: 'json', //dataType, which is json for this lab.
+        data: JSON.stringify({'email':$email}), //data to be sent
+        contentType: 'text/plain', //contentType, which is text/plain since json is sent as plain text.
+       success: function(){
+           alert('Product was deleted from cart');
+       },
+       error: function(){
+           alert('Product was not deleted from cart');
+       }
+      
+    });
+}
+
+
+
+
